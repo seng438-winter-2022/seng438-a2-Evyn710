@@ -19,12 +19,18 @@ Text…
 
 # 3 Test cases developed
 
-Text…
-
-// write down the name of the test methods and classes. Organize the based on
-the source code method // they test. identify which tests cover which partitions
-you have explained in the test strategy section //above
-
+| Method (1-5 are Range, 6-10 are DataUtilities)          | Who’s Testing it |
+| ------------------------------------------------------- | ---------------- |
+| getLowerBound(): double                                 | Kyle Hasan       |
+| getUpperBound(): double                                 | Kyle Hasan       |
+| getLength(): double                                     | Kyle Hasan       |
+| toString(): String                                      | Evyn Rissling    |
+| contains(double value)                                  | Andres Caicedo   |
+| calulateColumnTotal(values2D data,int column): double | John Abo         |
+| calculateRowTotal(values2D data,int row): double      | John Abo         |
+| createNumberArray(double\[\] data)                      | Evyn Rissling    |
+| createNumberArray2D(double\[\]\[\] data)                | Evyn Rissling    |
+| getCumulativePercentages(KeyedValues data)              | Andres Caicedo   |
 # 4 How the team work/effort was divided and managed
 
 Text…
