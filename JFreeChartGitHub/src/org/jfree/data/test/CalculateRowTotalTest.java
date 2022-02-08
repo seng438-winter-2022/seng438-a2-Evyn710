@@ -93,7 +93,7 @@ public class CalculateRowTotalTest {
 
     @Test
     public void testCalculateRowTotalTableNonzeroPosition() {
-        assertEquals("The sum of the table values row", 0, DataUtilities.calculateRowTotal(values2, 2), .000000001d);
+        assertEquals("The sum of the table values row", 0, DataUtilities.calculateRowTotal(values2, 1), .000000001d);
     }
 
     @Test
