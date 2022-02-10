@@ -172,7 +172,7 @@ public class GetCumulativePercentagesTest {
     @Test
     public void getPositiveCumulativePercentagesWithValue(){
         KeyedValues result = DataUtilities.getCumulativePercentages(positiveValues);
-        double [] expected = {5.0/20.0, 9.0/20.0, 2.0/20.0, 4.0/20.0};
+        double [] expected = {5.0/20.0, 14.0/20.0, 16.0/20.0, 20.0/20.0};
         double [] actual = {result.getValue(0).doubleValue(), result.getValue(1).doubleValue(), result.getValue(2).doubleValue(), result.getValue(3).doubleValue()};
 
         for (int i = 0; i < actual.length; i++){
@@ -190,7 +190,7 @@ public class GetCumulativePercentagesTest {
     @Test
     public void getNegativeCumulativePercentagesWithValue(){
         KeyedValues result = DataUtilities.getCumulativePercentages(negativeValues);
-        double [] expected = {-5.0/-16.0, -7.0/-16.0, -4.0/-16.0};
+        double [] expected = {-5.0/-16.0, -12.0/-16.0, -16.0/-16.0};
         double [] actual = {result.getValue(0).doubleValue(), result.getValue(1).doubleValue(), result.getValue(2).doubleValue()};
         for (int i = 0; i < actual.length; i++){
             System.out.print(actual[i]+ ", ");
