@@ -41,6 +41,123 @@ Partitioning for the getCumulativePercentage method was done on two mock objects
 | createNumberArray(double\[\] data)                      | Evyn Rissling    |
 | createNumberArray2D(double\[\]\[\] data)                | Evyn Rissling    |
 | getCumulativePercentages(KeyedValues data)              | Andres Caicedo   |
+ 
+&nbsp; 
+
+| Test Case (getLower()) | Lower                   | Upper               | Expected getLower()   | Actual getLower()     |
+| ---------------------- | ----------------------- | ------------------- | --------------------- | ----------------------- |
+| testNegativeRange      | \-0.4                   | \-0.1               | \-0.4                 | \-0.4                   |
+| testPositiveRange      | 8.01                    | 24.11               | 8.01                  | 8.01                    |
+| testZeroRange          | 0                       | 0                   | 0                     | 0                       |
+| testMixedRange         | \-1.0                   | 2.0                 | \-1.0                 | \-1.0                   |
+| testBoundaryRange      | \-Double.MAX\_VALUE | Double.MAX\_VALUE | \-Double.MAX\_VALUE | \-Double.MAX\_VALUE |
+
+&nbsp;
+
+| Test Case (getUpper()) | Lower                   | Upper               | Expected getUpper() | Actual getUpper()    |
+| ---------------------- | ----------------------- | ------------------- | ------------------- | --------------------- |
+| testNegativeRange      | \-0.4                   | \-0.1               | \-0.1               | \-0.1                 |
+| testPositiveRange      | 8.01                    | 24.11               | 24.11               | 24.11                 |
+| testZeroRange          | 0                       | 0                   | 0                   | 0                     |
+| testMixedRange         | \-1.0                   | 2.0                 | 2.0                 | 2                     |
+| testBoundaryRange      | \-Double.MAX\_VALUE | Double.MAX\_VALUE | Double.MAX\_VALUE | Double.MAX\_VALUE |
+
+&nbsp;
+
+| Test Case (getLength()) | Lower | Upper               | Expected getLength() | Actual getLength()   |
+| ----------------------- | ----- | ------------------- | -------------------- | --------------------- |
+| testNegativeRange       | \-0.4 | \-0.1               | 0.3                  | 0.3                   |
+| testPositiveRange       | 8.01  | 24.11               | 16.10                | 16.10                 |
+| testZeroRange           | 0     | 0                   | 0                    | 0                     |
+| testMixedRange          | \-1.0 | 2.0                 | 3                    | 3                     |
+| testBoundaryRangeLength | 0     | Double.MAX\_VALUE | Double.MAX\_VALUE  | Double.MAX\_VALUE |
+
+&nbsp;
+
+| toString() tests                 | Lower  | Upper | Expected Output       | Actual Output         |
+| -------------------------------- | ------ | ----- | --------------------- | --------------------- |
+| testNegativeLowerRange           | \-1.0  | 2.0   | "Range\[-1.0,2.0\]"   | "Range\[-1.0,2.0\]"   |
+| testNormalRange                  | 1.0    | 2.0   | "Range\[1.0,2.0\]"    | "Range\[1.0,2.0\]"    |
+| testNegativeRange                | \-3.0  | \-1.0 | "Range\[-3.0,-1.0\]"  | "Range\[-3.0,-1.0\]"  |
+| testUpperZeroRange               | \-1.0  | 0.0   | "Range\[-1.0,0.0\]"   | "Range\[-1.0,0.0\]"   |
+| testLowerZeroRange               | 0.0    | 1.0   | "Range\[0.0,1.0\]"    | "Range\[0.0,1.0\]"    |
+| testNonZeroPositiveDecimalsRange | 8.11   | 16.18 | “Range\[8.11,16.18\]” | "Range\[8.11,16.18\]" |
+| testNonZeroNegativeDecimalsRange | \-8.11 | 4.02  | "Range\[-8.11,4.02\]" | "Range\[-8.11,4.02\]" |
+
+&nbsp;
+
+| contains() test                | Input | Expected Output | Actual Output |
+| ------------------------------ | ----- | --------------- | ------------- |
+| testNullzeroContainsMethodTest | 0     | true            | true          |
+| zeroNotContainsMethodTest      | 5     | false           | false         |
+| mixedContainsMethodTest        | 0     | true            | true          |
+| mixedNotContainsMethodTest     | 21    | false           | false         |
+| mixedLowerBoundContainTest     | \-10  | true            | true          |
+| mixedUpperBoundContainTest     | 2     | true            | true          |
+| positiveContainsMethodTest     | 5.8   | true            | true          |
+| positiveNotContainsMethodTest  | 5     | false           | false         |
+| positiveLowerBoundContainTest  | 5.6   | true            | true          |
+| positiveUpperBoundContainTest  | 20.8  | true            | true          |
+| negativeContainsMethodTest     | \-6.4 | true            | true          |
+| negativeNotContainsMethodTest  | 5     | false           | false         |
+| negativeLowerBoundContainTest  | \-10  | true            | true          |
+| negativeUpperBoundContainTest  | \-1   | true            | true          |
+
+&nbsp;
+
+| calculateColumnTotal() tests                 | Input                   | Expected Output                  | Actual Output                   |
+| -------------------------------------------- | ----------------------- | -------------------------------- | ------------------------------- |
+| testCalculateColumnTotalSingleton            | Mock Values2D object, 0 | 3.3                              | 3.3                             |
+| testCalculateColumnTotalSingletonOutOfBounds | Mock Values2D object, 1 | 0.0                              | 1.1                             |
+| testCalculateColumnTotalNonzeroPosition      | Mock Values2D object, 1 | 3.3                              | 3.3                             |
+| testCalculateColumnTotalOutOfBounds          | Mock Values2D object, 2 | 0                                | 3.3                             |
+| testCalculateColumnTotalInvalidParameter     | Null, 0                 | InvalidParameterException thrown | IllegalArgumentException thrown |
+
+&nbsp;
+
+| calculateRowTotal() tests                 | Input                   | Expected Output                  | Actual Output                   |
+| ----------------------------------------- | ----------------------- | -------------------------------- | ------------------------------- |
+| testCalculateRowTotalSingleTon            | Mock Values2D object, 0 | 3.3                              | 3.3                             |
+| testCalculateRowTotalSingletonOutOfBounds | Mock Values2D object, 1 | 0                                | 3.3                             |
+| testCalculateRowTotalNonzeroPosition      | Mock Values2D object, 1 | 4.4                              | 4.4                             |
+| testCalculateRowTotalOutOfBounds          | Mock Values2D object, 2 | 0                                | 6.6                             |
+| testCalculateRowTotalInvalidParameter     | Null, 0                 | InvalidParameterException thrown | IllegalArgumentException thrown |
+
+&nbsp;
+
+| createNumberArray() tests | Input                        | Expected Output                              | Actual Output                                |
+| ------------------------- | ---------------------------- | -------------------------------------------- | -------------------------------------------- |
+| testNull                  | null                         | InvalidParameterException           | IllegalArgumentException                     |
+| testIntegerDoubleArray    | \[1, 2, 3\]                  | \[1.0, 2.0, 3.0\] as Number array            | \[1.0, 2.0, 3.0\] as Number array           |
+| testDoubleDecimalArray    | \[1.25, 2.25, 3.25\]         | \[1.25, 2.25, 3.25\] as Number array         | \[1.25, 2.25, 3.25\] as Number array        |
+| testEmptyArray            | \[\]                         | \[\] as Number array                         | \[\] as Number array                         |
+| testNegativeArray         | \[-1.25, 2.25, -3.25, -4.5\] | \[-1.25, 2.25, -3.25, -4.5\] as Number array | \[-1.25, 2.25, -3.25, -4.5\] as Number array |
+| testZeroArray             | \[0.0, 0.0, 0.0, 0.0\]       | \[0.0, 0.0, 0.0, 0.0\] as Number array       | \[0.0, 0.0, 0.0, 0.0\] as Number array       |
+
+&nbsp;
+
+| createNumberArray2D() tests | Input                                | Expected Output                                      | Actual Output                                        |
+| --------------------------- | ------------------------------------ | ---------------------------------------------------- | ---------------------------------------------------- |
+| testNull                    | null                                 | InvalidParameterException                            | IllegalArgumentException                             |
+| testIntegerDoubleArray      | \[\[1.0, 2.0\], \[3.0,4.0\]\]        | \[\[1.0, 2.0\], \[3.0, 4.0\]\] as Number array       | \[\[1.0, 2.0\], \[3.0, 4.0\]\] as Number array       |
+| testDoubleDecimalArray      | \[\[1.25, 2.25\], \[3.25, 4.25\]\]   | \[\[1.25, 2.25\], \[3.25, 4.25\]\] as Number array   | \[\[1.25, 2.25\], \[3.25, 4.25\]\] as Number array   |
+| testEmptyArray              | \[\[\]\]                             | \[\[\]\] as Number array                             | \[\[\]\] as Number array                             |
+| testNegativeArray           | \[\[-1.25, 2.25\], \[-3.25, 4.25\]\] | \[\[-1.25, 2.25\], \[-3.25, 4.25\]\] as Number array | \[\[-1.25, 2.25\], \[-3.25, 4.25\]\] as Number array |
+| testZeroArray               | \[\[0.0, 0.0\], \[0.0, 0.0\]\]       | \[\[0.0, 0.0\], \[0.0, 0.0\]\] as Number array       | \[\[0.0, 0.0\], \[0.0, 0.0\]\] as Number array       |
+
+&nbsp;
+
+| getCumulativePercentaces() test               | Expected Output                       | Actual Output                         |
+| --------------------------------------------- | ------------------------------------- | ------------------------------------- |
+| positiveGetItemCountTest                      | 4                                     | 4                                     |
+| negativeGetItemCountTest                      | 3                                     | 3                                     |
+| positiveGetTotalTest                          | 20.0                                  | 20.0                                  |
+| negativeGetTotalTest                          | \-16.0                                | \-16.0                                |
+| getValuesWithKey                              | {5.0, 9.0, 2.0, 4.0, -5.0, 7.0, -4.0} | {5.0, 9.0, 2.0, 4.0, -5.0, 7.0, -4.0} |
+| getKeyWithIndex                               | {0, 1, 2, 3, 0, 1, 2}                 | {0, 1, 2, 3, 0, 1, 2}                 |
+| getIndexWithKey                               | {0, 1, 2, 3, 0, 1, 2}                 | {0, 1, 2, 3, 0, 1, 2}                 |
+| getPositiveCumulativePercentagesWithValueTest | {0.25, 0.45, 0.1, 0.2}                | {0.333, 0.933, 1.066, 1.333}          |
+| getNegativeCumulativePercentagesWithValueTest | {0.3125, 0.4375, 0.25}                | {0.4545, 1.0909, 1.4545}              |
 
 # 4 How the team work/effort was divided and managed
 
