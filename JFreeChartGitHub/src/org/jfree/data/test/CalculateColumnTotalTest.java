@@ -103,7 +103,7 @@ public class CalculateColumnTotalTest {
     
     @Test (expected = InvalidParameterException.class)
     public void testCalculateColumnTotalInvalidParemeter() {
-        DataUtilities.calculateColumnTotal(values2, 0);
+        DataUtilities.calculateColumnTotal(null, 0);
     }
 
     @After
