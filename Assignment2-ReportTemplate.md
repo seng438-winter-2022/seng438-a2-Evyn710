@@ -12,7 +12,7 @@
 
 # 1 Introduction
 
-
+The purpose of this lab was to learn about creating unit tests for black box testing. Mock tests were used in place of external objects. A total of ten functions were tested using a combination of mock tests and standard unit tests. Our group used Eclipse as well as VSCode to make and run the necessary tests.
 
 # 2 Detailed description of unit test strategy
 
