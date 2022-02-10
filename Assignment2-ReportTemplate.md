@@ -2,7 +2,7 @@
 
 **Lab. Report \#2 – Requirements-Based Test Generation**
 
-| Group \#:      | 2    |
+| Group \#2:      |     |
 | -------------- | --- |
 | Student Names: |     |
 | Evyn Rissling               |     |
