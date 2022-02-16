@@ -15,7 +15,7 @@ public class GetCumulativePercentagesTest {
     Mockery mock2;
     KeyedValues positiveValues;
     KeyedValues negativeValues;
-
+    KeyedValues decimalValues;
 
 
     @BeforeClass public static void setUpBeforeClass()throws Exception {
@@ -88,6 +88,37 @@ public class GetCumulativePercentagesTest {
                 will(returnValue(-4));
                 
                 atLeast(1).of(negativeValues).getItemCount();
+                will(returnValue(3));
+            }
+        });
+
+
+        Mockery mockingContext3 = new Mockery();
+        decimalValues = mockingContext3.mock(KeyedValues.class);
+        mockingContext3.checking(new Expectations() {
+            { 
+                one(decimalValues).getIndex(0);
+                will(returnValue(0));
+                one(decimalValues).getIndex(1);
+                will(returnValue(1));
+                one(decimalValues).getIndex(2);
+                will(returnValue(2)); 
+                
+                one(decimalValues).getKey(0);
+                will(returnValue(0));
+                one(decimalValues).getKey(1);
+                will(returnValue(1));
+                one(decimalValues).getKey(2);
+                will(returnValue(2));
+                
+                atLeast(1).of(decimalValues).getValue(0);
+                will(returnValue(0.3));
+                atLeast(1).of(decimalValues).getValue(1);
+                will(returnValue(0.5));
+                atLeast(1).of(decimalValues).getValue(2);
+                will(returnValue(0.2));
+                
+                atLeast(1).of(decimalValues).getItemCount();
                 will(returnValue(3));
             }
         });
@@ -191,6 +222,22 @@ public class GetCumulativePercentagesTest {
     public void getNegativeCumulativePercentagesWithValue(){
         KeyedValues result = DataUtilities.getCumulativePercentages(negativeValues);
         double [] expected = {-5.0/-16.0, -12.0/-16.0, -16.0/-16.0};
+        double [] actual = {result.getValue(0).doubleValue(), result.getValue(1).doubleValue(), result.getValue(2).doubleValue()};
+        for (int i = 0; i < actual.length; i++){
+            System.out.print(actual[i]+ ", ");
+        }
+        System.out.print("\n");
+        for (int i = 0; i < expected.length; i++){
+            System.out.print(expected[i] + ", ");
+        }
+
+        assertArrayEquals(expected, actual, 0.00001d);
+    }
+
+    @Test
+    public void getDecimalCumulativePercentagesWithValue(){
+        KeyedValues result = DataUtilities.getCumulativePercentages(decimalValues);
+        double [] expected = {0.3/1.0, 0.8/1.0, 1.0/1.0};
         double [] actual = {result.getValue(0).doubleValue(), result.getValue(1).doubleValue(), result.getValue(2).doubleValue()};
         for (int i = 0; i < actual.length; i++){
             System.out.print(actual[i]+ ", ");
